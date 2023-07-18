@@ -44,8 +44,14 @@ class BoilerplateAction(BaseAction):
 
     def load_junitxml(self):
         json_parameters = self.junitxml_parser.parse(self.parameters)
-        print(json_parameters)
+        for detail in json_parameters["details"]:
+            testcases = []
+            for testsuite in detail["testsuite"]:
+                testcases.append(*testsuite["testsuite"])
+            detail["testcases"] = testcases
+            del detail["testsuite"]
 
+        print(json_parameters)
 
     @staticmethod
     def create(source: str) -> BoilerplateAction:
