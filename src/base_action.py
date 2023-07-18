@@ -1,10 +1,11 @@
 from abc import ABCMeta, abstractmethod
-from os import environ, listdir
-
+from os import environ
+import json
+from schemas.test_execution_base_schema import BaseTestExecutionResult
 
 class BaseAction(metaclass=ABCMeta):
     parameters: str
-    test_execution_results: str
+    test_execution_results: BaseTestExecutionResult
     inputs: dict
     metadata: dict
     def __init__(self, inputs):
@@ -46,7 +47,7 @@ class BaseAction(metaclass=ABCMeta):
 
         print("data", self.test_execution_results)
 
-        response = requests.post(API_URL, data=self.test_execution_results, headers=headers)
+        response = requests.post(API_URL, data=json.dumps(self.test_execution_results), headers=headers)
 
         if response.status_code != 200:
             raise Exception(f"Request failed: {response.text}")

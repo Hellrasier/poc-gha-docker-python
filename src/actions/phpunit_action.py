@@ -3,11 +3,12 @@ from os import path
 from typing import Final
 from ..base_action import BaseAction
 from ..utils.junitxmlParser import JunitXmlParser
+from ..schemas.phpunit_detail_schema import PhpunitTestResult
 
 
 class PHPUnitAction(BaseAction):
     parameters: str
-    test_execution_results: str
+    test_execution_results: PhpunitTestResult
     inputs: dict
     junitxml_parser: JunitXmlParser
 
@@ -25,16 +26,18 @@ class PHPUnitAction(BaseAction):
 
         if self.inputs["data-type"] == "xml":
             print("Parsing junitxml data...")
-            self.load_junitxml()
+            json_data = self.load_junitxml()
         elif self.inputs["data-type"] == "json":
             print("Parsing json data...")
-            self.load_json()
+            json_data = self.load_json()
         else:
             raise ValueError("This type is not supported")
 
         metadata = self.get_test_results_metadata()
+        json_data.update(metadata)
 
-        self.test_execution_results.update(metadata)
+        print("Validating the data...")
+        self.test_execution_results = PhpunitTestResult(**json_data)
 
         print("Saving results to hat endpoint...")
         # self.save_test_results_hat()
@@ -47,7 +50,7 @@ class PHPUnitAction(BaseAction):
         except JSONDecodeError:
             raise ValueError("Invalid JSON data")
 
-    def load_junitxml(self):
+    def load_junitxml(self) -> dict:
         json_parameters = self.junitxml_parser.parse(self.parameters)
         for detail in json_parameters["details"]:
             testcases = []
@@ -56,7 +59,7 @@ class PHPUnitAction(BaseAction):
             detail["testcases"] = testcases
             del detail["testsuite"]
 
-        self.test_execution_results = json_parameters
+        return json_parameters
 
     @staticmethod
     def create(inputs: dict) -> PHPUnitAction:

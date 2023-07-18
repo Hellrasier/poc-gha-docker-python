@@ -3,11 +3,12 @@ from json import JSONDecodeError, loads
 from typing import Dict, Optional
 from ..base_action import BaseAction
 from ..utils.junitxmlParser import JunitXmlParser
+from ..schemas.boilerplate_detail_schema import BoilerplateTestResult, BoilerplateDetails
 
 
 class BoilerplateAction(BaseAction):
     parameters: str
-    test_execution_results: str
+    test_execution_results: BoilerplateTestResult
     inputs: dict
     junitxml_parser: JunitXmlParser
 
@@ -22,33 +23,37 @@ class BoilerplateAction(BaseAction):
             print(f"Reading artifact from {self.inputs['artifact']}...")
             self.read_artifact()
 
+        json_data = {}
         if self.inputs["data-type"] == "xml":
             print("Parsing junitxml data...")
-            self.load_junitxml()
+            json_data = self.load_junitxml()
         elif self.inputs["data-type"] == "json":
             print("Parsing json data...")
-            self.load_json()
+            json_data = self.load_json()
         else:
             raise ValueError("This type is not supported")
 
-        metadata = self.get_test_results_metadata()
 
-        self.test_execution_results.update(metadata)
+        metadata = self.get_test_results_metadata()
+        json_data.update(metadata)
+
+        print("Validating the data...")
+        self.test_execution_results = BoilerplateTestResult(**json_data)
 
         print("Saving results to hat endpoint...")
         # self.save_test_results_hat()
 
         self.output_report()
 
-    def load_json(self):
+    def load_json(self) -> dict:
         try:
             return loads(self.input_data)
         except JSONDecodeError:
             raise ValueError("Invalid JSON data")
 
-    def load_junitxml(self):
+    def load_junitxml(self) -> dict:
         json_parameters = self.junitxml_parser.parse(self.parameters)
-        self.test_execution_results = json_parameters
+        return json_parameters
 
     @staticmethod
     def create(inputs: dict) -> BoilerplateAction:
