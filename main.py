@@ -7,7 +7,7 @@ _PREFIX = "INPUT_HAT-"
 
 def main():
 
-    inputs: InputsType = {name.replace(_PREFIX, "").lower(): value for name, value in environ}
+    inputs: InputsType = {name.replace(_PREFIX, "").lower(): value for name, value in environ.items()}
 
     print("The input parameters: ", inputs)
 
