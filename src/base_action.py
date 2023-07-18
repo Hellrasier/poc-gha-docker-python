@@ -30,8 +30,9 @@ class BaseAction(metaclass=ABCMeta):
         return metadata
 
     def read_artifact(self):
+        path = self.inputs["artifact"]
         try:
-            with open(self.inputs["artifact"], 'r') as file:
+            with open(path, 'r') as file:
                 self.parameters = file.read()
         except IOError:
             raise FileNotFoundError(f"Could not read file at {path}")
