@@ -10,17 +10,15 @@
       hat-platform:
         description: "Hat testing platform name"
         required: true
-      encoding:
-        description: 'Encoding type for encoded data or file'
-        required: false
-      environment:
+      hat-environment:
         description: "dev or production"
         required: false
 
 
   outputs:
       reports:
-        description: "..."
+        description: "Action test execution results"
+
   runs:
     using: "docker"
     image: "Dockerfile"

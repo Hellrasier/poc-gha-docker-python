@@ -3,15 +3,28 @@ from os import environ
 
 
 class BaseAction(metaclass=ABCMeta):
+    parameters: str
     test_execution_results: str
     inputs: dict
+    metadata: dict
     def __init__(self, inputs):
         self.inputs = inputs
+        self.parameters = inputs["parameters"]
 
     @abstractmethod
     def run(self):
         ...
 
+    def get_test_results_meta(self):
+        self.metadata["githubProps"] = {
+            "name": environ.get("GITHUB_REPOSITORY"),
+            "commit": environ.get("GITHUB_SHA"),
+            "branch": environ.get("GITHUB_REF_NAME")
+        }
+        self.metadata["application"] = environ.get("GITHUB_REPOSITORY")
+        self.metadata["capabilities"] = \
+            self.inputs["environment"] if self.inputs["environment"] != "" else environ.get("GITHUB_REF_NAME")
+        self.metadata["platform"] = self.inputs["platform"]
     def save_test_results_hat(self):
         headers = {
             'Content-Type': 'application/json',
