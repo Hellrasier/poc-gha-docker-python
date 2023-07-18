@@ -55,7 +55,7 @@ class JunitXmlParser:
             output[key].append(detail)
 
     def _remove_xml_declaration(self, xml_data: str) -> str:
-        return xml_data.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '', 1)
+        return xml_data.replace('<?xml version="1.0" encoding="UTF-8"?>\n', '')
 
     def parse(self, xml):
         xml_data = etree.fromstring(self._remove_xml_declaration(xml))

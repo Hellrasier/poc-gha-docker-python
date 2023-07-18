@@ -1,6 +1,11 @@
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Optional, Dict
 from .test_execution_base_schema import BaseTestExecutionResult
+
+
+class ExceptionProps(BaseModel):
+    type: str
+    reason: str
 
 class PhpunitTestCase(BaseModel):
     name: str
@@ -10,7 +15,7 @@ class PhpunitTestCase(BaseModel):
     assertions: int
     time: str
     status: str
-    exceptionProps: Optional[dict]
+    exceptionProps: Optional[ExceptionProps]
 
 class PhpunitDetail(BaseModel):
     name: str
