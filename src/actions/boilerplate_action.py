@@ -10,11 +10,11 @@ class BoilerplateAction(BaseAction):
     test_execution_results: str
     inputs: dict
     metadata: dict
-    junitxmlParser: JunitXmlParser
+    junitxml_parser: JunitXmlParser
 
     def __init__(self, inputs):
         super().__init__(inputs)
-        self.junitxmlParser = JunitXmlParser()
+        self.junitxml_parser = JunitXmlParser()
 
     def run(self):
 
