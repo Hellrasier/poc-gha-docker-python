@@ -9,7 +9,6 @@ class BoilerplateAction(BaseAction):
     parameters: str
     test_execution_results: str
     inputs: dict
-    metadata: dict
     junitxml_parser: JunitXmlParser
 
     def __init__(self, inputs):
@@ -33,7 +32,9 @@ class BoilerplateAction(BaseAction):
         else:
             raise ValueError("This type is not supported")
 
-        self.test_execution_results.update(self.metadata)
+        metadata = self.get_test_results_metadata()
+
+        self.test_execution_results.update(metadata)
 
         print("Saving results to hat endpoint...")
         # self.save_test_results_hat()

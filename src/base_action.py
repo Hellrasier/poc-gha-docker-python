@@ -11,20 +11,23 @@ class BaseAction(metaclass=ABCMeta):
         self.inputs = inputs
         self.parameters = inputs["parameters"]
 
+
     @abstractmethod
     def run(self):
         ...
 
-    def get_test_results_meta(self):
-        self.metadata["githubProps"] = {
+    def get_test_results_metadata(self):
+        metadata = dict()
+        metadata["githubProps"] = {
             "name": environ.get("GITHUB_REPOSITORY"),
             "commit": environ.get("GITHUB_SHA"),
             "branch": environ.get("GITHUB_REF_NAME")
         }
-        self.metadata["application"] = environ.get("GITHUB_REPOSITORY")
-        self.metadata["capabilities"] = \
+        metadata["application"] = environ.get("GITHUB_REPOSITORY")
+        metadata["capabilities"] = \
             self.inputs["environment"] if self.inputs["environment"] != "" else environ.get("GITHUB_REF_NAME")
-        self.metadata["platform"] = self.inputs["platform"]
+        metadata["platform"] = self.inputs["platform"]
+        return metadata
 
     def read_artifact(self):
         try:
