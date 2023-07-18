@@ -14,6 +14,7 @@ class BoilerplateAction(BaseAction):
 
     def __init__(self, inputs):
         super().__init__(inputs)
+        self.junitxmlParser = JunitXmlParser()
 
     def run(self):
 
