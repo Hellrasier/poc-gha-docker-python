@@ -1,6 +1,6 @@
 ARG WRKDIR=/action
 
-FROM python:3.9-alpine AS builder
+FROM python:3.9 AS builder
 ARG WRKDIR
 ADD . $WRKDIR
 WORKDIR $WRKDIR
