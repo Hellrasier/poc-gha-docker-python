@@ -41,7 +41,6 @@ class ActionFactory:
             if inputs["platform"] == platform:
                 action = cls(inputs)
 
-        print(action)
         if not isinstance(action, BaseAction):
             raise ValueError
 

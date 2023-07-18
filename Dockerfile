@@ -11,4 +11,6 @@ ARG WRKDIR
 COPY --from=builder $WRKDIR $WRKDIR
 WORKDIR $WRKDIR
 ENV PYTHONPATH=${WRKDIR}
+ENV API_URL="https://ms-oss-pytest-services-staging.digitalpfizer.com/api/v1/save-test-execution"
+ENV GITHUB_TOKEN="GITHUB-ACTION-AUTH-TOKEN"
 CMD ["/action/main.py"]

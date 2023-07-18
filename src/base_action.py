@@ -1,16 +1,16 @@
 from abc import ABCMeta, abstractmethod
 from os import environ
+from base64 import b64decode
 import json
 from .schemas.test_execution_base_schema import BaseTestExecutionResult
 
 class BaseAction(metaclass=ABCMeta):
-    parameters: str
+    input_data: str
     test_execution_results: BaseTestExecutionResult
     inputs: dict
     metadata: dict
     def __init__(self, inputs):
         self.inputs = inputs
-        self.parameters = inputs["parameters"]
 
 
     @abstractmethod
@@ -29,14 +29,17 @@ class BaseAction(metaclass=ABCMeta):
             self.inputs["environment"] if self.inputs["environment"] != "" else environ.get("GITHUB_REF_NAME")
         metadata["platform"] = self.inputs["platform"]
         return metadata
-
     def read_artifact(self):
         path = self.inputs["artifact"]
         try:
             with open(path, 'r') as file:
-                self.parameters = file.read()
+                self.input_data = file.read()
         except IOError:
             raise FileNotFoundError(f"Could not read file at {path}")
+
+    def read_parameters(self):
+        bytes = b64decode(self.input["parameters"])
+        self.input_data = bytes.decode('utf-8')
 
     def save_test_results_hat(self):
         headers = {
@@ -46,7 +49,7 @@ class BaseAction(metaclass=ABCMeta):
 
         print("data", self.test_execution_results)
 
-        response = requests.post(API_URL, data=json.dumps(self.test_execution_results.dict()), headers=headers)
+        response = requests.post(API_URL, data=self.test_execution_results.json(), headers=headers)
 
         if response.status_code != 200:
             raise Exception(f"Request failed: {response.text}")

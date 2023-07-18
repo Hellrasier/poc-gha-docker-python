@@ -23,6 +23,9 @@ class PHPUnitAction(BaseAction):
         if self.inputs["artifact"] != "":
             print(f"Reading artifact from {self.inputs['artifact']}...")
             self.read_artifact()
+        else:
+            print("Decoding base64 encoded input parameters")
+            self.read_parameters()
 
         if self.inputs["data-type"] == "xml":
             print("Parsing junitxml data...")
@@ -67,7 +70,3 @@ class PHPUnitAction(BaseAction):
             return BoilerplateAction(inputs)
         except JSONDecodeError as ex:
             raise ValueError from ex
-
-
-
-

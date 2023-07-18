@@ -7,9 +7,9 @@ from ..schemas.boilerplate_detail_schema import BoilerplateTestResult, Boilerpla
 
 
 class BoilerplateAction(BaseAction):
-    parameters: str
-    test_execution_results: BoilerplateTestResult
     inputs: dict
+    input_data: str
+    test_execution_results: BoilerplateTestResult
     junitxml_parser: JunitXmlParser
 
     def __init__(self, inputs):
@@ -22,6 +22,9 @@ class BoilerplateAction(BaseAction):
         if self.inputs["artifact"] != "":
             print(f"Reading artifact from {self.inputs['artifact']}...")
             self.read_artifact()
+        else:
+            print("Decoding base64 encoded input parameters")
+            self.read_parameters()
 
         json_data = {}
         if self.inputs["data-type"] == "xml":
@@ -45,6 +48,7 @@ class BoilerplateAction(BaseAction):
 
         self.output_report()
 
+
     def load_json(self) -> dict:
         try:
             return loads(self.input_data)
@@ -52,7 +56,7 @@ class BoilerplateAction(BaseAction):
             raise ValueError("Invalid JSON data")
 
     def load_junitxml(self) -> dict:
-        json_parameters = self.junitxml_parser.parse(self.parameters)
+        json_parameters = self.junitxml_parser.parse(loads(self.input_data))
         return json_parameters
 
     @staticmethod
