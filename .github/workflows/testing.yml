@@ -22,4 +22,5 @@ jobs:
         hat-platform: "boilerplate"
         hat-environment: "dev"
         hat-data-type: "xml"
-      run: echo ${{ steps.custom_action.outputs.reports }}
+
+    - run: echo ${{ steps.custom_action.outputs.reports }}
