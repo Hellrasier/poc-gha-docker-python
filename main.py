@@ -9,7 +9,7 @@ def main():
 
     inputs: InputsType = {name.replace(_PREFIX, "").lower(): value for name, value in environ.items()}
 
-    print("The input parameters: ", inputs)
+    # print("The input parameters: ", inputs)
 
 
     try:
