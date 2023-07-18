@@ -36,6 +36,8 @@ class ActionFactory:
 
         for cls in [cls for name, cls in getmembers(src.actions, isclass)]:
             platform = getfile(cls).replace("/action/src/actions/", "").replace("_action.py", "")
+            print(platform)
+            print(inputs["platform"])
             if inputs["platform"] == platform:
                 action = cls(inputs)
 
