@@ -32,7 +32,6 @@ class BaseAction(metaclass=ABCMeta):
 
     def read_artifact(self):
         path = self.inputs["artifact"]
-        print(listdir("./"))
         try:
             with open(path, 'r') as file:
                 self.parameters = file.read()
