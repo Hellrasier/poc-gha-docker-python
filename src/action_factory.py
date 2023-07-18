@@ -37,8 +37,9 @@ class ActionFactory:
         for cls in [cls for name, cls in getmembers(src.actions, isclass)]:
             platform = getfile(cls).replace("/action/src/actions/", "").replace("_action.py", "")
             if inputs["platform"] == platform:
-                action = cls(action_inputs)
+                action = cls(inputs)
 
+        print(action)
         if not isinstance(action, BaseAction):
             raise ValueError
 
