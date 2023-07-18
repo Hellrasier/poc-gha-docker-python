@@ -47,7 +47,7 @@ class BoilerplateAction(BaseAction):
         for detail in json_parameters["details"]:
             testcases = []
             for testsuite in detail["testsuite"]:
-                testcases.append(*testsuite["testsuite"])
+                testcases.extend(testsuite["testsuite"])
             detail["testcases"] = testcases
             del detail["testsuite"]
 
