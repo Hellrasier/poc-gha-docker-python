@@ -58,4 +58,4 @@ class BaseAction(metaclass=ABCMeta):
         print('Response:', response.text)
 
     def output_report(self):
-        print(f"::set-output name=reports::{self.test_execution_results.dict()}")
+        print(f"::set-output name=reports::{self.test_execution_results.json()}")

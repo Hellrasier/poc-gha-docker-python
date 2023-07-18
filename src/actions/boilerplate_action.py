@@ -26,7 +26,6 @@ class BoilerplateAction(BaseAction):
             print("Decoding base64 encoded input parameters")
             self.read_parameters()
 
-        json_data = {}
         if self.inputs["data-type"] == "xml":
             print("Parsing junitxml data...")
             json_data = self.load_junitxml()
@@ -40,6 +39,7 @@ class BoilerplateAction(BaseAction):
         metadata = self.get_test_results_metadata()
         json_data.update(metadata)
 
+        print(json_data)
         print("Validating the data...")
         self.test_execution_results = BoilerplateTestResult(**json_data)
 

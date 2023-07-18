@@ -10,7 +10,7 @@ class PhpunitTestCase(BaseModel):
     assertions: int
     time: str
     status: str
-    exceptionProps: Optional[dict] = None
+    exceptionProps: Optional[dict]
 
 class PhpunitDetail(BaseModel):
     name: str
