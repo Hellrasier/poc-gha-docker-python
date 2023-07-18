@@ -46,7 +46,7 @@ class BaseAction(metaclass=ABCMeta):
 
         print("data", self.test_execution_results)
 
-        response = requests.post(API_URL, data=json.dumps(self.test_execution_results), headers=headers)
+        response = requests.post(API_URL, data=json.dumps(self.test_execution_results.dict()), headers=headers)
 
         if response.status_code != 200:
             raise Exception(f"Request failed: {response.text}")
@@ -55,4 +55,4 @@ class BaseAction(metaclass=ABCMeta):
         print('Response:', response.text)
 
     def output_report(self):
-        print(f"::set-output name=reports::{self.test_execution_results}")
+        print(f"::set-output name=reports::{self.test_execution_results.dict()}")
