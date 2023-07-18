@@ -2,27 +2,68 @@ from __future__ import annotations
 from os import path
 from typing import Final
 from ..base_action import BaseAction
-
-
-_WORKSPACE_DIR: Final[str] = "/github/workspace"
+from ..utils.junitxmlParser import JunitXmlParser
 
 
 class PHPUnitAction(BaseAction):
+    parameters: str
+    test_execution_results: str
+    inputs: dict
+    junitxml_parser: JunitXmlParser
 
-    _report_path: str
-
-    def __init__(self, artifact: str):
-        super().__init__()
-
-        self._report_path = f"{_WORKSPACE_DIR}/{artifact}"
+    def __init__(self, inputs):
+        super().__init__(inputs)
+        self.junitxml_parser = JunitXmlParser()
 
     def run(self):
-        if not path.exists(self._report_path):
-            raise ValueError
 
         print("Handling action of the PHPUnit execution results...")
-        with open(self._report_path, "r") as file:
-            print(file.read())
+
+        if self.inputs["artifact"] != "":
+            print(f"Reading artifact from {self.inputs['artifact']}...")
+            self.read_artifact()
+
+        if self.inputs["data-type"] == "xml":
+            print("Parsing junitxml data...")
+            self.load_junitxml()
+        elif self.inputs["data-type"] == "json":
+            print("Parsing json data...")
+            self.load_json()
+        else:
+            raise ValueError("This type is not supported")
+
+        metadata = self.get_test_results_metadata()
+
+        self.test_execution_results.update(metadata)
+
+        print("Saving results to hat endpoint...")
+        # self.save_test_results_hat()
+
+        self.output_report()
+
+    def load_json(self):
+        try:
+            return loads(self.input_data)
+        except JSONDecodeError:
+            raise ValueError("Invalid JSON data")
+
+    def load_junitxml(self):
+        json_parameters = self.junitxml_parser.parse(self.parameters)
+        for detail in json_parameters["details"]:
+            testcases = []
+            for testsuite in detail["testsuite"]:
+                testcases.extend(testsuite["testsuite"])
+            detail["testcases"] = testcases
+            del detail["testsuite"]
+
+        self.test_execution_results = json_parameters
+
+    @staticmethod
+    def create(inputs: dict) -> PHPUnitAction:
+        try:
+            return BoilerplateAction(inputs)
+        except JSONDecodeError as ex:
+            raise ValueError from ex
 
 
 

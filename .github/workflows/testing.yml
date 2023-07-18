@@ -18,7 +18,18 @@ jobs:
       id: custom_action
       uses: ./
       with:
-        hat-artifact: "results.xml"
+        hat-artifact: "examples/test_result_phpunit.xml"
+        hat-platform: "phpunit"
+        hat-environment: "dev"
+        hat-data-type: "xml"
+
+    - run: echo ${{ steps.custom_action.outputs.reports }}
+
+    - name: Run Docker action
+      id: custom_action
+      uses: ./
+      with:
+        hat-artifact: "examples/test_result_boilerplate.xml"
         hat-platform: "boilerplate"
         hat-environment: "dev"
         hat-data-type: "xml"

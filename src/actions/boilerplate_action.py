@@ -16,7 +16,6 @@ class BoilerplateAction(BaseAction):
         self.junitxml_parser = JunitXmlParser()
 
     def run(self):
-
         print("Handling action of the Boilerplate execution results...")
 
         if self.inputs["artifact"] != "":
@@ -49,18 +48,11 @@ class BoilerplateAction(BaseAction):
 
     def load_junitxml(self):
         json_parameters = self.junitxml_parser.parse(self.parameters)
-        for detail in json_parameters["details"]:
-            testcases = []
-            for testsuite in detail["testsuite"]:
-                testcases.extend(testsuite["testsuite"])
-            detail["testcases"] = testcases
-            del detail["testsuite"]
-
         self.test_execution_results = json_parameters
 
     @staticmethod
-    def create(source: str) -> BoilerplateAction:
+    def create(inputs: dict) -> BoilerplateAction:
         try:
-            return BoilerplateAction(loads(source))
+            return BoilerplateAction(inputs)
         except JSONDecodeError as ex:
             raise ValueError from ex

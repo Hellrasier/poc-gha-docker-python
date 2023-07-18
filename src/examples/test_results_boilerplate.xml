@@ -1,0 +1,21 @@
+<testsuites>
+  <testsuite application="paxlovidcompaxlovid" platform="boilerplate" duration="100" capabilities="main">
+    <testcase feature="User Authentication" scenario="User Login" status="Passed" duration="120" featureFileName="userAuthentication.feature">
+      <properties>
+        <property name="environment" browser="Chrome" browserVersion="92.0" os="Windows" osVersion="10" deviceName="ChelPC" deviceType="Desktop" bsRunMode="Automated" isDeviceTesting="true" />
+        <property name="tags" type="array" values="TEST-TAG-1, TEST-TAG-2, TEST-TAG-3"/>
+        <property name="bsUrls" bsConsoleLogUrl="https://example.com/report1" bsVideoUrl="https://link-to-video.com/1" />
+        <property name="jiraProps" epicNumber="J-123" ticketNumber="JIRA-123" />
+      </properties>
+    </testcase>
+    <testcase feature="User Registration" scenario="User registration" defect="UI misalignment" status="Failed" duration="150" featureFileName="user_registration.feature">
+      <properties>
+        <property name="environment" browser="Chrome" browserVersion="92.0" os="Windows" osVersion="10" deviceName="ChelPC" deviceType="Desktop" bsRunMode="Automated" isDeviceTesting="true" />
+        <property name="tags" type="array" values="TEST-TAG-1, TEST-TAG-2, TEST-TAG-3"/>
+        <property name="bsUrls" bsConsoleLogUrl="https://example.com/report1" bsVideoUrl="https://link-to-video.com/1" />
+        <property name="jiraProps" epicNumber="J-123" ticketNumber="JIRA-456" />
+      </properties>
+      <failure name="UI Error" stepName="SomeStep" exceptionOccuredAt="">UI misalignment in the registration form</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

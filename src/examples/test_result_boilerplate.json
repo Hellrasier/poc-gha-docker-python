@@ -1,0 +1,77 @@
+{
+    "duration": 100,
+    "details": [
+        {
+            "environment": {
+                "browser": "Chrome",
+                "browserVersion": "92.0",
+                "os": "Windows",
+                "osVersion": "10",
+                "deviceName": "ChelPC",
+                "deviceType": "Desktop",
+                "bsRunMode": "Automated",
+                "isDeviceTesting": true
+            },
+            "scenario": "User login",
+            "defect": null,
+            "tags": [
+                "TEST-TAG-1", "TEST-TAG-2", "TEST-TAG-3"
+            ],
+            "bsUrls": {
+                "bsConsoleLogUrl": "https://example.com/report1",
+                "bsVideoUrl": "https://link-to-video.com/1"
+            },
+            "feature": "User Authentication",
+            "featureFileName": "user_authentication.feature",
+            "status": "Passed",
+            "duration": 120,
+            "jiraProps": {
+                "epicNumber": "J-123",
+                "ticketNumber": "JIRA-123"
+            },
+            "exceptionProps": {
+                "name": "",
+                "stepName": "",
+                "stackTrace": "",
+                "exceptionOccuredAt": "",
+                "reason": ""
+            }
+        },
+        {
+            "environment": {
+                "browser": "Chrome",
+                "browserVersion": "92.0",
+                "os": "Windows",
+                "osVersion": "10",
+                "deviceName": "ChelPC",
+                "deviceType": "Desktop",
+                "bsRunMode": "Automated",
+                "isDeviceTesting": true
+            },
+            "scenario": "User registration",
+            "defect": "UI misalignment",
+            "tags": [
+                "TEST-TAG-1", "TEST-TAG-2", "TEST-TAG-3"
+            ],
+            "bsUrls": {
+                "bsConsoleLogUrl": "https://example.com/report1",
+                "bsVideoUrl": "https://link-to-video.com/1"
+            },
+            "feature": "User Registration",
+            "featureFileName": "user_registration.feature",
+            "status": "Failed",
+            "duration": 150,
+            "jiraProps": {
+                "epicNumber": "J-123",
+                "ticketNumber": "JIRA-456"
+            },
+            "exceptionProps": {
+                "name": "UI Error",
+                "stepName": "SomeStep",
+                "stackTrace": "TE",
+                "exceptionOccuredAt": "",
+                "reason": "UI misalignment in the registration form"
+            }
+        }
+    ]
+}

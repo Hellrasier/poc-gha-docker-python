@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="8" assertions="22" errors="0" warnings="0" failures="2" skipped="0" time="120.813962">
+    <testsuite name="unit" tests="6" assertions="14" errors="0" warnings="0" failures="2" skipped="0" time="0.005804">
+      <testsuite name="Drupal\Tests\s3fs\Unit\InfographicUrlTest" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Unit/InfographicUrlTest.php" tests="3" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.005000">
+        <testcase name="testRewriteUri" class="Drupal\Tests\s3fs\Unit\InfographicUrlTest" classname="Drupal.Tests.s3fs.Unit.InfographicUrlTest" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Unit/InfographicUrlTest.php" line="36" assertions="3" time="0.004910"/>
+        <testcase name="testRewriteUri2" class="Drupal\Tests\s3fs\Unit\InfographicUrlTest" classname="Drupal.Tests.s3fs.Unit.InfographicUrlTest" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Unit/InfographicUrlTest.php" line="58" assertions="3" time="0.000059"/>
+        <testcase name="testRewriteUri3" class="Drupal\Tests\s3fs\Unit\InfographicUrlTest" classname="Drupal.Tests.s3fs.Unit.InfographicUrlTest" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Unit/InfographicUrlTest.php" line="80" assertions="3" time="0.000030"/>
+      </testsuite>
+      <testsuite name="Drupal\Tests\s3fs\Unit\InfographicUrlTest2" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Unit/InfographicUrlTest2.php" tests="3" assertions="5" errors="0" warnings="0" failures="2" skipped="0" time="0.000804">
+        <testcase name="testRewriteUri" class="Drupal\Tests\s3fs\Unit\InfographicUrlTest2" classname="Drupal.Tests.s3fs.Unit.InfographicUrlTest2" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Unit/InfographicUrlTest2.php" line="36" assertions="1" time="0.000723">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">Drupal\Tests\s3fs\Unit\InfographicUrlTest2::testRewriteUri
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'/test-path'
++'/test-path-1'
+
+/var/www/html/vendor/phpunit/phpunit/src/Framework/Constraint/Equality/IsEqual.php:96
+/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Unit/InfographicUrlTest2.php:40
+/var/www/html/vendor/phpunit/phpunit/src/Framework/TestResult.php:728
+/var/www/html/vendor/phpunit/phpunit/src/Framework/TestSuite.php:684
+/var/www/html/vendor/phpunit/phpunit/src/Framework/TestSuite.php:684
+/var/www/html/vendor/phpunit/phpunit/src/Framework/TestSuite.php:684
+/var/www/html/vendor/phpunit/phpunit/src/TextUI/TestRunner.php:651
+/var/www/html/vendor/phpunit/phpunit/src/TextUI/Command.php:144
+/var/www/html/vendor/phpunit/phpunit/src/TextUI/Command.php:97</failure>
+        </testcase>
+        <testcase name="testRewriteUri2" class="Drupal\Tests\s3fs\Unit\InfographicUrlTest2" classname="Drupal.Tests.s3fs.Unit.InfographicUrlTest2" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Unit/InfographicUrlTest2.php" line="58" assertions="1" time="0.000044">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">Drupal\Tests\s3fs\Unit\InfographicUrlTest2::testRewriteUri2
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'/test-path'
++'/test-path-2'
+
+/var/www/html/vendor/phpunit/phpunit/src/Framework/Constraint/Equality/IsEqual.php:96
+/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Unit/InfographicUrlTest2.php:62
+/var/www/html/vendor/phpunit/phpunit/src/Framework/TestResult.php:728
+/var/www/html/vendor/phpunit/phpunit/src/Framework/TestSuite.php:684
+/var/www/html/vendor/phpunit/phpunit/src/Framework/TestSuite.php:684
+/var/www/html/vendor/phpunit/phpunit/src/Framework/TestSuite.php:684
+/var/www/html/vendor/phpunit/phpunit/src/TextUI/TestRunner.php:651
+/var/www/html/vendor/phpunit/phpunit/src/TextUI/Command.php:144
+/var/www/html/vendor/phpunit/phpunit/src/TextUI/Command.php:97</failure>
+        </testcase>
+        <testcase name="testRewriteUri3" class="Drupal\Tests\s3fs\Unit\InfographicUrlTest2" classname="Drupal.Tests.s3fs.Unit.InfographicUrlTest2" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Unit/InfographicUrlTest2.php" line="80" assertions="3" time="0.000037"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="functional" tests="2" assertions="8" errors="0" warnings="0" failures="0" skipped="0" time="120.808158">
+      <testsuite name="Drupal\Tests\pfecssfilehostpfcom_profile\Functional\PfecssfilehostpfcomProfileTest" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Functional/PfecssfilehostpfcomProfileTest.php" tests="1" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="60.041957">
+        <testcase name="testPfecssfilehostpfcomProfileDefaults" class="Drupal\Tests\pfecssfilehostpfcom_profile\Functional\PfecssfilehostpfcomProfileTest" classname="Drupal.Tests.pfecssfilehostpfcom_profile.Functional.PfecssfilehostpfcomProfileTest" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Functional/PfecssfilehostpfcomProfileTest.php" line="63" assertions="4" time="60.041957"/>
+      </testsuite>
+      <testsuite name="Drupal\Tests\pfecssfilehostpfcom_profile\Functional\PfecssfilehostpfcomProfileTest2" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Functional/PfecssfilehostpfcomProfileTest2.php" tests="1" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="60.766201">
+        <testcase name="testPfecssfilehostpfcomProfileDefaults" class="Drupal\Tests\pfecssfilehostpfcom_profile\Functional\PfecssfilehostpfcomProfileTest2" classname="Drupal.Tests.pfecssfilehostpfcom_profile.Functional.PfecssfilehostpfcomProfileTest2" file="/var/www/html/app/profiles/pfecssfilehostpfcom_profile/tests/src/Functional/PfecssfilehostpfcomProfileTest2.php" line="63" assertions="4" time="60.766201"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
