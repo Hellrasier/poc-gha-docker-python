@@ -32,4 +32,4 @@ class PhpunitTestResult(BaseTestExecutionResult):
     failures: int
     skipped: int
     time: str
-    details: List[PhpunitDetails]
+    details: List[PhpunitDetail]
