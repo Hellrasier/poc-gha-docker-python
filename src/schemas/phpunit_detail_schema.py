@@ -15,7 +15,7 @@ class PhpunitTestCase(BaseModel):
     assertions: int
     time: str
     status: str
-    exceptionProps: Optional[ExceptionProps]
+    exceptionProps: Optional[ExceptionProps] = None
 
 class PhpunitDetail(BaseModel):
     name: str

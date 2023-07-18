@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from os import environ
 from base64 import b64decode
-import json
+from json import dumps
 from .schemas.test_execution_base_schema import BaseTestExecutionResult
 
 class BaseAction(metaclass=ABCMeta):
@@ -49,7 +49,7 @@ class BaseAction(metaclass=ABCMeta):
 
         print("data", self.test_execution_results)
 
-        response = requests.post(API_URL, data=self.test_execution_results.json(), headers=headers)
+        response = requests.post(API_URL, data=dumps(self.test_execution_results.dict()), headers=headers)
 
         if response.status_code != 200:
             raise Exception(f"Request failed: {response.text}")
@@ -58,4 +58,4 @@ class BaseAction(metaclass=ABCMeta):
         print('Response:', response.text)
 
     def output_report(self):
-        print(f"::set-output name=reports::{self.test_execution_results.json()}")
+        print(f"::set-output name=reports::{self.test_execution_results.dict()}")
