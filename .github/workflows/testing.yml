@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Run Docker action
-      id: custom_action
+      id: custom_action_phpunit
       uses: ./
       with:
         hat-artifact: "examples/test_result_phpunit.xml"
@@ -23,10 +23,10 @@ jobs:
         hat-environment: "dev"
         hat-data-type: "xml"
 
-    - run: echo ${{ steps.custom_action.outputs.reports }}
+    - run: echo ${{ steps.custom_action_phpunit.outputs.reports }}
 
     - name: Run Docker action
-      id: custom_action
+      id: custom_action_bp
       uses: ./
       with:
         hat-artifact: "examples/test_result_boilerplate.xml"
@@ -34,4 +34,4 @@ jobs:
         hat-environment: "dev"
         hat-data-type: "xml"
 
-    - run: echo ${{ steps.custom_action.outputs.reports }}
+    - run: echo ${{ steps.custom_action_bp.outputs.reports }}
