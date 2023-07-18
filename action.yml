@@ -1,0 +1,15 @@
+  name: "Python Container Action."
+  description: "Sample of the Python containerized action."
+  inputs:
+      hat-parameters:
+        description: "The JSON-encoded (BASE64) string."
+        required: false
+      hat-artifact:
+        description: "Path to the artifact file(s)."
+        required: false
+  outputs:
+      reports:
+        description: "..."
+  runs:
+    using: "docker"
+    image: "Dockerfile"
