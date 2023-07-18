@@ -22,7 +22,7 @@ class BoilerplateAction(BaseAction):
         if self.inputs["artifact"] != "":
             self.read_artifact()
 
-        if self.inputs["type"] == "xml":
+        if self.inputs["data-type"] == "xml":
             self.load_junitxml()
         elif self.inputs["data-type"] == "json":
             self.load_json()
