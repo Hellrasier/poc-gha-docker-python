@@ -21,20 +21,24 @@ class BoilerplateAction(BaseAction):
         print("Handling action of the Boilerplate execution results...")
 
         if self.inputs["artifact"] != "":
+            print(f"Reading artifact from {self.inputs['artifact']}...")
             self.read_artifact()
 
         if self.inputs["data-type"] == "xml":
+            print("Parsing junitxml data...")
             self.load_junitxml()
         elif self.inputs["data-type"] == "json":
+            print("Parsing json data...")
             self.load_json()
         else:
             raise ValueError("This type is not supported")
 
         self.test_execution_results.update(self.metadata)
 
-        self.save_test_results_hat()
+        print("Saving results to hat endpoint...")
+        # self.save_test_results_hat()
 
-        self.save_test_results_artifact()
+        self.output_report()
 
     def load_json(self):
         try:
@@ -51,7 +55,7 @@ class BoilerplateAction(BaseAction):
             detail["testcases"] = testcases
             del detail["testsuite"]
 
-        print(json_parameters)
+        self.test_execution_results = json_parameters
 
     @staticmethod
     def create(source: str) -> BoilerplateAction:

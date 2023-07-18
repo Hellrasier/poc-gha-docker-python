@@ -49,5 +49,5 @@ class BaseAction(metaclass=ABCMeta):
         print('Status code:', response.status_code)
         print('Response:', response.text)
 
-    def save_test_results_artifact(self):
-        ...
+    def output_report(self):
+        print(f"::set-output name=reports::{self.test_execution_results}")
