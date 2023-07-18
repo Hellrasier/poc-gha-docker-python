@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from os import environ
 import json
-from schemas.test_execution_base_schema import BaseTestExecutionResult
+from .schemas.test_execution_base_schema import BaseTestExecutionResult
 
 class BaseAction(metaclass=ABCMeta):
     parameters: str
