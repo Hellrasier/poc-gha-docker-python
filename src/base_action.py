@@ -25,6 +25,14 @@ class BaseAction(metaclass=ABCMeta):
         self.metadata["capabilities"] = \
             self.inputs["environment"] if self.inputs["environment"] != "" else environ.get("GITHUB_REF_NAME")
         self.metadata["platform"] = self.inputs["platform"]
+
+    def read_artifact(self):
+        try:
+            with open(self.inputs["artifact"], 'r') as file:
+                self.parameters = file.read()
+        except IOError:
+            raise FileNotFoundError(f"Could not read file at {path}")
+
     def save_test_results_hat(self):
         headers = {
             'Content-Type': 'application/json',
