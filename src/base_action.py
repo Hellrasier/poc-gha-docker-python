@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from os import environ
+from os import environ, listdir
 
 
 class BaseAction(metaclass=ABCMeta):
@@ -31,6 +31,7 @@ class BaseAction(metaclass=ABCMeta):
 
     def read_artifact(self):
         path = self.inputs["artifact"]
+        print(listdir("./"))
         try:
             with open(path, 'r') as file:
                 self.parameters = file.read()
