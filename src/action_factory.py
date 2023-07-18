@@ -1,5 +1,5 @@
 import src.actions
-from inspect import signature, getmembers, isclass
+from inspect import signature, getmembers, isclass, getfile
 from typing import TypeVar, Tuple, Optional
 from .base_action import BaseAction
 
@@ -33,21 +33,23 @@ class ActionFactory:
         """
 
         action = None
-        action_inputs = {name: value for name, value in inputs}
-
+        # action_inputs = {name: value for name, value in inputs}
 
 
         for cls in [cls for name, cls in getmembers(src.actions, isclass)]:
-            cls_init_params = set(param for param in signature(cls.__init__).parameters.keys() if param != "self")
-            print(action_inputs.keys())
-            print(cls_init_params)
-            if set(action_inputs.keys()) == cls_init_params:
-                print(f"Action found: {cls.__name__}")
-                action = cls(**action_inputs)
-                break
+            print(getfile(cls))
 
-        if not isinstance(action, BaseAction):
-            raise ValueError
+        # for cls in [cls for name, cls in getmembers(src.actions, isclass)]:
+        #     cls_init_params = set(param for param in signature(cls.__init__).parameters.keys() if param != "self")
+        #     print(action_inputs.keys())
+        #     print(cls_init_params)
+        #     if set(action_inputs.keys()) == cls_init_params:
+        #         print(f"Action found: {cls.__name__}")
+        #         action = cls(**action_inputs)
+        #         break
+
+        # if not isinstance(action, BaseAction):
+        #     raise ValueError
 
         return action
 

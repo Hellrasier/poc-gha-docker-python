@@ -6,12 +6,11 @@ from ..base_action import BaseAction
 
 class BoilerplateAction(BaseAction):
 
-    _parameters: Dict[str, Optional[str]]
+    test_execution_results: str
+    inputs: dict
 
-    def __init__(self, parameters: Dict[str, Optional[str]]):
-        super().__init__()
-
-        self._parameters = parameters
+    def __init__(self, inputs):
+        super().__init__(inputs)
 
     def run(self):
         print("Handling action of the Boilerplate execution results...")
