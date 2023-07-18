@@ -7,6 +7,17 @@
       hat-artifact:
         description: "Path to the artifact file(s)."
         required: false
+      hat-platform:
+        description: "Hat testing platform name"
+        required: true
+      encoding:
+        description: 'Encoding type for encoded data or file'
+        required: false
+      environment:
+        description: "dev or production"
+        required: false
+
+
   outputs:
       reports:
         description: "..."

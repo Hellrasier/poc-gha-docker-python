@@ -7,14 +7,16 @@ _PREFIX = "INPUT_HAT-"
 
 def main():
 
-    inputs: InputsType = \
-        tuple(
-            (name.replace(_PREFIX, "").lower(), environ.get(name), )
-            for name in environ
-            if name.startswith(_PREFIX) and environ.get(name) != ""
-        )
+    # inputs: InputsType = \
+    #     tuple(
+    #         (name.replace(_PREFIX, "").lower(), environ.get(name), )
+    #         for name in environ
+    #         if name.startswith(_PREFIX) and environ.get(name) != ""
+    #     )
+    #
+    # print("The input parameters: ", tuple(name for name, _ in inputs))
 
-    print("The input parameters: ", tuple(name for name, _ in inputs))
+    print(environ)
 
     try:
         handler = ActionFactory.create(inputs)
