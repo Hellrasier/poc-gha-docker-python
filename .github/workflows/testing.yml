@@ -20,3 +20,4 @@ jobs:
         hat-artifact: "results.xml"
         hat-platform: "boilerplate"
         hat-environment: "dev"
+        hat-data-type: "xml"

@@ -10,6 +10,9 @@
       hat-platform:
         description: "Hat testing platform name"
         required: true
+      hat-data-type:
+        description: "Xml or json"
+        required: true
       hat-environment:
         description: "dev or production"
         required: false

@@ -24,7 +24,7 @@ class BoilerplateAction(BaseAction):
 
         if self.inputs["type"] == "xml":
             self.load_junitxml()
-        elif self.inputs["type"] == "json":
+        elif self.inputs["data-type"] == "json":
             self.load_json()
         else:
             raise ValueError("This type is not supported")
