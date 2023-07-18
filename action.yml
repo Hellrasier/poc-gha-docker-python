@@ -13,6 +13,6 @@
   runs:
     using: "docker"
     image: "Dockerfile"
-    env:
-      REPO_NAME: ${{ github.repository }}
-      REPO_COMMIT: ${{ github.sha }}
+    args:
+      - ${{ github.repository }}
+      - ${{ github.sha }}
