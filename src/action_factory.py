@@ -37,6 +37,8 @@ class ActionFactory:
 
         for cls in [cls for name, cls in getmembers(src.actions, isclass)]:
             cls_init_params = set(param for param in signature(cls.__init__).parameters.keys() if param != "self")
+            print(action_inputs.keys())
+            print(cls_init_params)
             if set(action_inputs.keys()) == cls_init_params:
                 print(f"Action found: {cls.__name__}")
                 action = cls(**action_inputs)

@@ -14,8 +14,6 @@ def main():
             if name.startswith(_PREFIX) and environ.get(name) != ""
         )
 
-    print(environ)
-
     print("The input parameters: ", tuple(name for name, _ in inputs))
 
     try:
