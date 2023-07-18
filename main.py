@@ -16,7 +16,7 @@ def main():
         handler = ActionFactory.create(inputs)
         handler.run()
     except ValueError as ex:
-        print("Something goes wrong...")
+        print(f"Something goes wrong. ${ex}")
 
 
 if __name__ == "__main__":
