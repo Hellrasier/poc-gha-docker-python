@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [ testing-action ]
+  pull_request:
+    branches: [ testing-action ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/checkout@v3
+
+    - name: Run Docker action
+      uses: ./
+      with:
+        hat-artifact: "results.xml"
