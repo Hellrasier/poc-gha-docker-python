@@ -7,7 +7,7 @@ from ..schemas.phpunit_detail_schema import PhpunitTestResult
 
 
 class PHPUnitAction(BaseAction):
-    parameters: str
+    input_data: str
     test_execution_results: PhpunitTestResult
     inputs: dict
     junitxml_parser: JunitXmlParser
@@ -54,7 +54,7 @@ class PHPUnitAction(BaseAction):
             raise ValueError("Invalid JSON data")
 
     def load_junitxml(self) -> dict:
-        json_parameters = self.junitxml_parser.parse(self.parameters)
+        json_parameters = self.junitxml_parser.parse(self.input_data)
         for detail in json_parameters["details"]:
             testcases = []
             for testsuite in detail["testsuite"]:
